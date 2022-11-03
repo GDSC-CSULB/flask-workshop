@@ -4,15 +4,15 @@ from app import db
 from .models import Course
 
 courses_post_args = reqparse.RequestParser()
-courses_post_args.add_argument("department", type=str, help="Course department", required=True)
-courses_post_args.add_argument("number", type=int, help="Course number", required=True)
-courses_post_args.add_argument("name", type=str, help="Course name", required=True)
-courses_post_args.add_argument("units", type=int, help="Number of units of course", required=True)
+courses_post_args.add_argument("department", type=str, help="Course department required", required=True)
+courses_post_args.add_argument("number", type=int, help="Course number required", required=True)
+courses_post_args.add_argument("name", type=str, help="Course name required", required=True)
+courses_post_args.add_argument("units", type=int, help="Number of units required", required=True)
 courses_post_args.add_argument("desc", type=str, help="Course description")
 
 course_put_args = reqparse.RequestParser()
 course_put_args.add_argument("name", type=str, help="Course name")
-course_put_args.add_argument("units", type=int, help="Number of units of course")
+course_put_args.add_argument("units", type=int, help="Number of units")
 course_put_args.add_argument("desc", type=str, help="Course description")
 
 resource_fields = {
