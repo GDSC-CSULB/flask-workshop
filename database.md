@@ -22,16 +22,16 @@ db.session.commit()
 # Get all Course
 Course.query.all()
 
-# Filter Departments by attribute
+# Filter Courses by attribute
 Course.query.filter_by(name='Introduction to Programming').all()
 
-# Get a single Department by primary key
+# Get a single Course by primary key
 Course.query.get(('CECS', 174))
 
-# Update Department 
+# Update Course 
 db.session.query(Course).filter(Course.department == 'CECS', Course.number == 174).update({'units': 4})
 
-# Delete Department
+# Delete Course
 db.session.query(Course).filter(Course.department == 'CECS', Course.number == 174).delete()
 ```
 
