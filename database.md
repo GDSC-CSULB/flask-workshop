@@ -35,29 +35,32 @@ db.session.query(Course).filter(Course.department == 'CECS', Course.number == 17
 db.session.query(Course).filter(Course.department == 'CECS', Course.number == 174).delete()
 ```
 
-Test and populate the Course table
+Populate the Course table
 
 ```python
 from app import db
 from app.models import Course
 
-cecs_174 = Course(department='CECS', number=174, name='Introduction to Programming', units=3,
-                  desc='Introductory course to programming in Python')
-db.session.add(cecs_174)
-db.session.commit()
-Course.query.all()
+cecs_courses = [Course(department='CECS', number=105, name='CECS Intro', units=1, desc='Intro to CECS'),
+                Course(department='CECS', number=174, name='Python', units=3, desc='Intro to Python'),
+                Course(department='CECS', number=225, name='Digital Logic', units=3,
+                       desc='Digital logic and assembly programming'),
+                Course(department='CECS', number=228, name='Discrete Math I', units=3,
+                       desc='First discrete mathematics course'),
+                Course(department='CECS', number=274, name='Data Structures', units=3, desc='Data structures'),
+                Course(department='CECS', number=277, name='OOP', units=3, desc='Object-oriented programming')]
 
-cecs_228 = Course(department='CECS', number=228, name='Discrete Math', units=3,
-                  desc='Discrete mathematics')
-cecs_274 = Course(department='CECS', number=274, name='Data Structures', units=3,
-                  desc='Learn about arrays, linked lists, trees, etc.')
-math_122 = Course(department='MATH', number=122, name='Calculus', units=3)
-db.session.add(cecs_228)
-db.session.add(cecs_274)
-db.session.add(math_122)
+db.session.add_all(cecs_courses)
+
+math_courses = [Course(department='MATH', number=122, name='Calculus I', units=4, desc='Derivatives'),
+                Course(department='MATH', number=224, name='Calculus III', units=4, desc='Multivariable'),
+                Course(department='MATH', number=247, name='Linear Algebra', units=3,
+                       desc='Linear algebra course')]
+db.session.add_all(math_courses)
+
 db.session.commit()
 Course.query.all()
 
 # Primary Key Violation
-math_12 = Course(department='MATH', number=122, name='Culus', units=2)
+math_12 = Course(department='MATH', number=122, name='Another calculus course', units=2)
 ```
