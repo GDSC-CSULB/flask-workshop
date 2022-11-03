@@ -27,7 +27,7 @@ resource_fields = {
 class CoursesResource(Resource):
     @marshal_with(resource_fields)
     def get(self):
-        return Course.query.all(), 200
+        return Course.query.all(), 200, {'Access-Control-Allow-Origin': '*'}
 
     @marshal_with(resource_fields)
     def post(self):
