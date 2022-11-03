@@ -74,7 +74,6 @@ class CourseResource(Resource):
 
         return result, 200
 
-    @marshal_with(resource_fields)
     def delete(self, department, number):
         result = Course.query.get((department, number))
 
